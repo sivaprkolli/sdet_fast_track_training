@@ -13,4 +13,10 @@ public class EParent {
     }
 
 
+    public static void main(String[] args) {
+        EParent parent = new EParent();
+        int b = parent.a;
+        System.out.println(b);
+    }
+
 }
