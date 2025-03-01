@@ -33,6 +33,8 @@ public class AboutStrings {
         String[] str = {"Selenium", "Appium", "Playwright", "RestAssured"};
         int[] arr = {1,2,3,4,5};
         char[] crr = {'a','b','c','d'};
+        boolean[] bcc = {true, false, true, false};
+        double[] drr = {100.00, 200.00, 350.00};
         String st1 = "Test@1234$";
 
         System.out.println(str[2]);

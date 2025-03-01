@@ -5,7 +5,7 @@ import org.sft.abstraction.Interface4;
 public class WrapperClass {
     public static void main(String[] args) {
         String s = "0"; // non p
-        int i = 5; // ppemitive
+        int i = 5; // premitive
 
         String s1 = new String("Selenium");
         //Character c = new Character('c');
