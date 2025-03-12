@@ -2,7 +2,7 @@ package org.sft.programs;
 
 public class ReverseANumber {
     public static void main(String[] args) {
-        int n = 98765;
+        int n = 98765; // 50+6, 560
         int reminder=0;
         int reverseNumber = 0;
 

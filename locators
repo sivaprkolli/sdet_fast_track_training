@@ -1,0 +1,66 @@
+
+xpath syntax:
+//tagName[@attribute='value']
+//input[@id='UserFirstName-qxcY'] // dont use this kind of locators when there is mixed string
+
+Xpath using methods:
+
+contains()
+//input[contains(@id,'UserFirstName')]
+//label[contains(text(),'First name')]
+
+starts-with()
+//input[starts-with(@id,'UserFirstName')]
+
+ends-with()
+
+text()
+//span[text()='Enter your first name']
+//label[contains(text(),'First name')]
+
+normalize-space()
+//label[normalize-space()='First name']
+//label[normalize-space(text())='First name']
+//input[normalize-space(@name)='UserFirstName']
+
+last()
+count()
+not()
+string-length()
+local-name() - svg
+name() - svg
+
+
+Xpath Axes:
+
+following - not recomended to use
+preceding - not recomended to use
+
+child -
+//div[@class='firstName textFieldInput section']/div
+//div[@class='firstName textFieldInput section']/child::div
+//div[@class='firstName textFieldInput section']/div/div[@class='warning-img']
+
+descendant -
+//div[@class='firstName textFieldInput section']/descendant::div[@class='warning-img']
+//div[@class='firstName textFieldInput section']//div[@class='warning-img']
+
+parent -
+//div[text()='MOTOROLA']/parent::label/child::input
+//div[text()='MOTOROLA']/../input
+
+//div[@class="warning-img"]/../parent::div[starts-with(@class,'lastName')]
+
+ancestor -
+//div[@class="warning-img"]/ancestor::div[starts-with(@class,'lastName')]
+
+preceding-sibling -
+
+//div[text()='MOTOROLA']/preceding-sibling::input
+
+following-sibling -
+//label[starts-with(@for,'CompanyEmployees')]/following-sibling::span
+
+self -
+
+
