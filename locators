@@ -12,7 +12,7 @@ contains()
 starts-with()
 //input[starts-with(@id,'UserFirstName')]
 
-ends-with()
+ends-with():
 
 text()
 //span[text()='Enter your first name']
@@ -63,4 +63,49 @@ following-sibling -
 
 self -
 
+xpath and/or conditions:
+//input[@name='UserLastName' or starts-with(@id,'UserLastName')] // or
+//input[@name='UserLastName' and starts-with(@id,'UserLastName')] // and
+//input[@name='UserLastName'][starts-with(@id,'UserLastName')] // and
 
+cssSelector:
+
+xpath syntax: //tagname[@attribute='value']
+css Syntax: tagname[attribute='value']
+
+input[name='username']
+[name='username']
+
+css Starts-with:
+input[id^='UserFirstName']
+
+css contains:
+input[id*='UserFirstName']
+
+css ends-with:
+span[id$='errMsg']
+
+css and:
+input[name='UserLastName'][id^='UserLastName']
+
+css child:
+div[title="SAMSUNG"]>div>label>input
+
+css with id:
+#loginPanel
+#loginPanel>form
+
+css with class:
+.login
+.login>[name='username']
+
+
+childs first element :
+.leftmenu>li:first-of-type
+
+childs last element:
+.leftmenu>li:last-of-type
+
+css with index:
+.leftmenu>li:nth-child(4)
+(//ul[@class="leftmenu"]/li)[4] - xpath
