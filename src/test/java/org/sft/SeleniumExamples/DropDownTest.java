@@ -5,11 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DropDownTest {
 
@@ -49,10 +52,25 @@ public class DropDownTest {
         selectEmployeesList.selectByIndex(4);
         selectEmployeesList.selectByValue("500");
 
-
         WebElement countryDropDown = driver.findElement(By.cssSelector("[name=\"CompanyCountry\"]"));
         Select selectCountryList = new Select(countryDropDown);
         selectCountryList.selectByVisibleText("Israel");
+
+        WebElement selectedOption = selectCountryList.getFirstSelectedOption();
+        Assert.assertEquals(selectedOption.getText(), "Israel");
+
+        List<WebElement> countries = selectCountryList.getOptions();
+        List<String> countriesList = new ArrayList<>();
+
+        for (int i=0; i<countries.size(); i++){
+            countriesList.add(countries.get(i).getText());
+        }
+
+        System.out.println(countriesList);
+        Assert.assertTrue(countriesList.contains("India"));
+
+        selectCountryList.selectByVisibleText("India");
+        Assert.assertEquals(selectCountryList.getFirstSelectedOption().getText(), "India");
 
     }
 }
