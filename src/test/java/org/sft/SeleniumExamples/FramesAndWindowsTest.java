@@ -53,8 +53,6 @@ public class FramesAndWindowsTest extends BaseSFT{
         }
 
         WebElement newWindowsHeading = driver.findElement(By.xpath("//h3[text()='New Window']"));
-
-
     }
 
 }
