@@ -2,6 +2,7 @@ NoSuchFrameException:
 NoSuchElementException:
 ElementClickInterceptedException
 StaleElementReferenceException
+InvalidMethodException: You're not allowed to extend classes that define Step Definitions or hooks
 
 org.openqa.selenium.TimeoutException:
 Expected condition failed: waiting for visibility of element located by By.name: UserFirstNam (tried for 10 second(s) with 500 milliseconds interval)
