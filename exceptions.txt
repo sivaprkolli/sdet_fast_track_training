@@ -1,6 +1,7 @@
 NoSuchFrameException:
 NoSuchElementException:
-ElementClickInterceptedException
+ElementClickInterceptedException:
+ElementClickInterceptedException: element click intercepted: Element is not clickable at point (770, 585).
 StaleElementReferenceException
 
 org.openqa.selenium.TimeoutException:

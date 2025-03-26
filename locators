@@ -25,7 +25,7 @@ normalize-space()
 
 last()
 count()
-not()
+not() -
 string-length()
 local-name() - svg
 name() - svg

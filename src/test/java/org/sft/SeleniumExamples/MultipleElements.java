@@ -75,5 +75,10 @@ public class MultipleElements {
         softAssert.assertEquals(menuItems, expectedMenuItems);
         //softAssert.assertTrue(menuElements.equals(expectedMenuItems));
         softAssert.assertAll();
+
+        /*
+        WebElement - NoSuchElement
+        List<WebElement> -
+         */
     }
 }
