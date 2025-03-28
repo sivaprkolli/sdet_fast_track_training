@@ -53,4 +53,12 @@ public class CommonActions {
         System.out.println(actualRowData);
         return actualRowData;
     }
+
+    public boolean isElementEnabled(WebElement element){
+        return element.isEnabled();
+    }
+
+    public boolean isSizeElementEnabled(WebElement element){
+        return element.isDisplayed();
+    }
 }
