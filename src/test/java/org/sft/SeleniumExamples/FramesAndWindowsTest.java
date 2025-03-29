@@ -43,12 +43,11 @@ public class FramesAndWindowsTest extends BaseSFT{
         Object[] handles = driver.getWindowHandles().toArray();
         driver.switchTo().window((String)handles[1]);
 
-
         //way 2
        for(String window:windows){
             System.out.println(window);
-            if(driver.getTitle().equals("New Window")){
-                driver.switchTo().window(window);
+            if(driver.switchTo().window(window).getTitle().equals("New Window")){
+                break;
             }
         }
 
