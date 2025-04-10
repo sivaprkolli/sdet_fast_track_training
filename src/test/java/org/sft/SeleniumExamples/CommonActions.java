@@ -3,8 +3,13 @@ package org.sft.SeleniumExamples;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CommonActions {
@@ -60,5 +65,17 @@ public class CommonActions {
 
     public boolean isSizeElementEnabled(WebElement element){
         return element.isDisplayed();
+    }
+
+    public void getCurrentDate(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM-dd-yyyy");
+        System.out.println(dateFormat.format(new Date()));
+    }
+
+    public static String incrementOrDecrementDate(int days){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM-dd-yyyy");
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, days);
+        return dateFormat.format(calendar.getTime());
     }
 }
