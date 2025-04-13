@@ -4,8 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +22,9 @@ public class CalenderTest {
     WebDriver driver;
 
     @Test
-    public void selectDate(){
-        driver = new ChromeDriver();
+    public void selectDate() throws MalformedURLException {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
 
         driver.get("https://www.makemytrip.com/");
         driver.manage().window().maximize();
