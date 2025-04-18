@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel" parallel="tests" thread-count="5">
+<suite name="Parallel" parallel="tests" thread-count="3">
 
     <test name="ChromeTest">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="org.sft.SeleniumExamples.ParallelGridTest"></class>
+            <class name="org.sft.SeleniumExamples.UsingThreadLocal"></class>
         </classes>
     </test>
 
     <test name="FirefoxTest">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="org.sft.SeleniumExamples.ParallelGridTest"></class>
+            <class name="org.sft.SeleniumExamples.UsingThreadLocal"></class>
         </classes>
     </test>
 
     <test name="EdgeTest">
         <parameter name="browser" value="edge"></parameter>
         <classes>
-            <class name="org.sft.SeleniumExamples.ParallelGridTest"></class>
+            <class name="org.sft.SeleniumExamples.UsingThreadLocal"></class>
         </classes>
     </test>
 
@@ -27,7 +27,7 @@
 <!--    <test name="SafariTest">-->
 <!--        <parameter name="browser" value="safari"></parameter>-->
 <!--        <classes>-->
-<!--            <class name="org.sft.SeleniumExamples.ParallelGridTest"></class>-->
+<!--            <class name="org.sft.SimpleFrameworkDevelopementUsingTestNG.LoginTest"></class>-->
 <!--        </classes>-->
 <!--    </test>-->
 

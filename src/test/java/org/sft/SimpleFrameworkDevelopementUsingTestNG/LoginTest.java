@@ -11,7 +11,7 @@ public class LoginTest extends BaseSFT{
 
     @BeforeClass
     public void initializePages(){
-        loginPage = new LoginPageUsingPageFactoryUsingCommonFunctions(driver);
+        loginPage = new LoginPageUsingPageFactoryUsingCommonFunctions(getDriver());
     }
 
     @Test

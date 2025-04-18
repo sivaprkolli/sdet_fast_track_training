@@ -8,7 +8,7 @@ public class Child extends Parent{
         parent.test1();*/
 
         //Up casting
-        Parent parent1 = (Parent)new Child();
+        Parent parent1 = new Child();
         parent1.test1();
 
         // down casting
