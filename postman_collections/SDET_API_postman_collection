@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "11f1a2cc-16f2-464a-a48c-c3a95f956ae0",
+		"name": "SDET_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6464525",
+		"_collection_link": "https://gold-shadow-517813.postman.co/workspace/FreshersTraining~5dc33e6c-9342-4e1c-8322-024f4db52a3f/collection/6464525-11f1a2cc-16f2-464a-a48c-c3a95f956ae0?action=share&source=collection_link&creator=6464525"
+	},
+	"item": [
+		{
+			"name": "GroceryStore",
+			"item": [
+				{
+					"name": "VerifyStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status value\", ()=> {\r",
+									"    pm.expect(pm.response.json().status).eql(\"UP\");\r",
+									"    pm.expect(pm.response.json().status).to.equal(\"UP\");\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endPoint}}/STATUS",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"STATUS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SaveProducts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(pm.response.json()[0].id)\r",
+									"console.log(pm.response.json()[1].id)\r",
+									"console.log(pm.response.json()[2].id)\r",
+									"\r",
+									"pm.collectionVariables.set(\"productId1\", pm.response.json()[0].id)\r",
+									"pm.collectionVariables.set(\"productId2\", pm.response.json()[1].id)\r",
+									"pm.collectionVariables.set(\"productId3\", pm.response.json()[2].id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endPoint}}/products",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endPoint}}/products/:productId",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "{{productId1}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateACart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify cart is created\", function () {\r",
+									"\r",
+									"    pm.expect(pm.response.json().created).eql(true);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Veirfy 201 status\", ()=> {\r",
+									"    pm.response.to.have.status(201)\r",
+									"})\r",
+									"\r",
+									"pm.collectionVariables.set(\"cartId\", pm.response.json().cartId)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{endPoint}}/carts",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endPoint}}/carts/:cartId",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"carts",
+								":cartId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProductToCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": {{productId1}},\r\n   \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endPoint}}/carts/:cartId/items",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LoginSuccess",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"siva.kolli@reqres.in\",\n    \"password\": \"cityslickqqqq\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/registertion",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"registertion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QueryParamExample",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PathParamExample",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"cityslickqqqq\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/:log_reg",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						":log_reg"
+					],
+					"variable": [
+						{
+							"key": "log_reg",
+							"value": "register"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UsingAPIKey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=92b7cd2f93befceeb747ce3681981e35",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Mumbai"
+						},
+						{
+							"key": "appid",
+							"value": "92b7cd2f93befceeb747ce3681981e35"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "test",
+			"value": "login",
+			"type": "string"
+		},
+		{
+			"key": "endPoint",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "productId1",
+			"value": ""
+		},
+		{
+			"key": "productId2",
+			"value": ""
+		},
+		{
+			"key": "productId3",
+			"value": ""
+		},
+		{
+			"key": "cartId",
+			"value": ""
+		}
+	]
+}
