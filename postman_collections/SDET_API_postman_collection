@@ -60,7 +60,11 @@
 									"\r",
 									"pm.collectionVariables.set(\"productId1\", pm.response.json()[0].id)\r",
 									"pm.collectionVariables.set(\"productId2\", pm.response.json()[1].id)\r",
-									"pm.collectionVariables.set(\"productId3\", pm.response.json()[2].id)"
+									"pm.collectionVariables.set(\"productId3\", pm.response.json()[2].id)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -84,6 +88,20 @@
 				},
 				{
 					"name": "GetProductDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -146,7 +164,122 @@
 					"response": []
 				},
 				{
+					"name": "AddProductToCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": {{productId2}},\r\n   \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endPoint}}/carts/:cartId/items",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProductToCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": {{productId2}},\r\n   \"quantity\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endPoint}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								},
+								{
+									"key": "itemId",
+									"value": "{{productId1}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -170,13 +303,30 @@
 					"response": []
 				},
 				{
-					"name": "AddProductToCart",
+					"name": "CreateToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"accessToken\", pm.response.json().accessToken);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"productId\": {{productId1}},\r\n   \"quantity\": 10\r\n}",
+							"raw": "{\r\n   \"clientName\": \"{{$randomFullName}}\",\r\n   \"clientEmail\": \"{{$randomFileName}}@yopmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -184,19 +334,142 @@
 							}
 						},
 						"url": {
-							"raw": "{{endPoint}}/carts/:cartId/items",
+							"raw": "{{endPoint}}/api-clients",
 							"host": [
 								"{{endPoint}}"
 							],
 							"path": [
-								"carts",
-								":cartId",
-								"items"
+								"api-clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAnOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"orderId\", pm.response.json().orderId)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": \"{{cartId}}\",\r\n    \"customerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endPoint}}/orders",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderDetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endPoint}}/orders/:orderId",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
 							],
 							"variable": [
 								{
-									"key": "cartId",
-									"value": "{{cartId}}"
+									"key": "orderId",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"Please provide gift pack for the order\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endPoint}}/orders/:orderId",
+							"host": [
+								"{{endPoint}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderId}}"
 								}
 							]
 						}
@@ -301,7 +574,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=92b7cd2f93befceeb747ce3681981e35",
+					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=test",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -320,7 +593,7 @@
 						},
 						{
 							"key": "appid",
-							"value": "92b7cd2f93befceeb747ce3681981e35"
+							"value": "test"
 						}
 					]
 				}
@@ -358,7 +631,7 @@
 		},
 		{
 			"key": "endPoint",
-			"value": "",
+			"value": "https://simple-grocery-store-api.glitch.me",
 			"type": "string"
 		},
 		{
@@ -375,6 +648,14 @@
 		},
 		{
 			"key": "cartId",
+			"value": ""
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "orderId",
 			"value": ""
 		}
 	]
