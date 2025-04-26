@@ -3,6 +3,7 @@ package org.sft.APIExamples;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -48,15 +49,19 @@ public class PostRequestSample {
         System.out.println(map);
 
         Response response = given()
+                .header("x-api-key","reqres-free-v1")
                 .body(payload.toString())
                 .contentType(ContentType.JSON)
                 .when()
                 .post("https://reqres.in/api/login");
+        System.out.println(response.prettyPrint());
 
         String token = response
                 .then()
                 .extract()
                 .path("token");
+
+        Assert.assertTrue(response.statusCode() == 200);
 
         System.out.println("token :: " + token);
     }
