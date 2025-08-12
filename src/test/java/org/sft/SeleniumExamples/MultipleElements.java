@@ -4,12 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +22,10 @@ public class MultipleElements {
     WebDriver driver;
 
     @BeforeTest
-    public void launchApplication(){
-        driver = new ChromeDriver();
+    public void launchApplication() throws MalformedURLException {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        //driver = new ChromeDriver();
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         driver.get("https://para.testar.org/parabank/about.htm;jsessionid=FB240F858FA900BA96DEE5A980656F85");
 
         driver.manage().window().maximize();

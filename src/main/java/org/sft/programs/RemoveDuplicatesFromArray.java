@@ -12,7 +12,7 @@ public class RemoveDuplicatesFromArray {
 
         Set<Integer> set = new HashSet<>();
 
-        // Using a Set to remove duplicates
+        // Using a Set to remove duplicatesx
         for (int i= 0; i<arr.length; i++) {
             set.add(arr[i]);
         }
