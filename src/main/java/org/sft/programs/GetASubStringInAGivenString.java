@@ -12,14 +12,14 @@ public class GetASubStringInAGivenString {
                 "error_user\n" +
                 "visual_user";
 
-        String[] indexs = userNames.split(":");
+        /*String[] indexs = userNames.split(":");
         System.out.println(indexs[1]);
 
         //System.out.println(userNames.substring(index));
 
 
         System.out.println(price.substring(11));
-        System.out.println(price.substring(11,15));
+        System.out.println(price.substring(11,15));*/
 
         int index1 = price.indexOf("and ");
         System.out.println(price.substring(index1));
